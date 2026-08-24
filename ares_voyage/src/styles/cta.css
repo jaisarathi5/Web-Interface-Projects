@@ -1,0 +1,61 @@
+#cta {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+}
+.cta-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 70% 80%, #4f2317, #1a120e 60%, #080605);
+  background-size: cover;
+  z-index: 0;
+}
+.cta-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(8, 6, 5, 0.4), transparent);
+}
+.cta-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+}
+.cta-text {
+  max-width: 600px;
+}
+.cta-text .section-sub {
+  margin-bottom: 32px;
+}
+.cta-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.cta-rocket {
+  font-size: 8rem;
+  color: rgba(184, 92, 56, 0.2);
+  animation: floatRocket 4s ease-in-out infinite alternate;
+}
+@keyframes floatRocket {
+  0% {
+    transform: translateY(0) rotate(-4deg);
+  }
+  100% {
+    transform: translateY(-30px) rotate(4deg);
+  }
+}
+@media (max-width: 768px) {
+  .cta-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .cta-rocket {
+    font-size: 4rem;
+  }
+  .cta-buttons {
+    justify-content: center;
+  }
+}

@@ -1,0 +1,202 @@
+/* ─── Reset & Base ─── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #080605;
+  color: #f7f3ee;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #080605;
+}
+::-webkit-scrollbar-thumb {
+  background: #b85c38;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d67a45;
+}
+
+/* ─── Container ─── */
+.container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+}
+@media (max-width: 768px) {
+  .container {
+    padding: 0 20px;
+  }
+}
+
+/* ─── Section Spacing ─── */
+section {
+  position: relative;
+  padding: 100px 0;
+}
+@media (max-width: 768px) {
+  section {
+    padding: 60px 0;
+  }
+}
+
+/* ─── Section Headers ─── */
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-weight: 400;
+  font-size: 0.8rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: #b85c38;
+  margin-bottom: 12px;
+}
+.section-title {
+  font-family: 'Cinzel', serif;
+  font-weight: 700;
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  line-height: 1.1;
+  color: #f7f3ee;
+  margin-bottom: 16px;
+}
+.section-title span {
+  background: linear-gradient(135deg, #b85c38, #e6b85c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-sub {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+  color: rgba(247, 243, 238, 0.7);
+  max-width: 600px;
+  line-height: 1.7;
+}
+.section-sub.centered {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* ─── Buttons ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 40px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s ease;
+  text-decoration: none;
+  text-transform: uppercase;
+}
+.btn-primary {
+  background: linear-gradient(135deg, #b85c38, #d67a45);
+  color: #f7f3ee;
+  box-shadow: 0 4px 30px rgba(184, 92, 56, 0.3);
+}
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 50px rgba(184, 92, 56, 0.5);
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.15) 60%, transparent 80%);
+  transform: translateX(-100%) skewX(-20deg);
+  transition: transform 0.6s ease;
+}
+.btn-primary:hover::after {
+  transform: translateX(100%) skewX(-20deg);
+}
+.btn-secondary {
+  background: transparent;
+  color: #f7f3ee;
+  border: 1px solid rgba(184, 92, 56, 0.5);
+  backdrop-filter: blur(4px);
+}
+.btn-secondary:hover {
+  background: rgba(184, 92, 56, 0.15);
+  border-color: #b85c38;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 40px rgba(184, 92, 56, 0.15);
+}
+.btn-gold {
+  background: linear-gradient(135deg, #e6b85c, #d67a45);
+  color: #080605;
+  box-shadow: 0 4px 30px rgba(230, 184, 92, 0.25);
+}
+.btn-gold:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 50px rgba(230, 184, 92, 0.4);
+}
+
+/* ─── Reveal Animations ─── */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal-left.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-right {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal-right.visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.92);
+  transition: all 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.reveal-scale.visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 480px) {
+  .btn {
+    padding: 14px 28px;
+    font-size: 0.8rem;
+  }
+  .section-title {
+    font-size: 1.8rem;
+  }
+}

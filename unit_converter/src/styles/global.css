@@ -1,0 +1,413 @@
+/* ─── Global Styles ─── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --transition: 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light theme (default) */
+:root {
+  --bg: #f8f6f1;
+  --bg-card: #ffffff;
+  --bg-input: #f2efe9;
+  --bg-hover: #f0ede6;
+  --text: #1a1a2e;
+  --text-secondary: #5a5a72;
+  --text-muted: #8a8aa0;
+  --border: #e8e4dc;
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.06), 0 4px 16px rgba(0, 0, 0, 0.03);
+  --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.10), 0 8px 24px rgba(0, 0, 0, 0.05);
+  --accent: #7c3aed;
+  --accent-light: #ede9fe;
+  --accent-dark: #6d28d9;
+  --highlight: #f97316;
+  --highlight-light: #fff7ed;
+  --highlight-dark: #ea580c;
+  --gradient: linear-gradient(135deg, #7c3aed 0%, #f97316 100%);
+  --glass: rgba(255, 255, 255, 0.70);
+  --glass-border: rgba(255, 255, 255, 0.30);
+  --scrollbar-track: #f0ede6;
+  --scrollbar-thumb: #c8c4b8;
+}
+
+/* Dark theme */
+[data-theme="dark"] {
+  --bg: #0d0d1a;
+  --bg-card: #18182b;
+  --bg-input: #232340;
+  --bg-hover: #2a2a4a;
+  --text: #ffffff;                       /* pure white */
+  --text-secondary: #e8e4dc;             /* very light cream */
+  --text-muted: #c8c4d0;
+  --shadow: 0 12px 40px rgba(0, 0, 0, 0.40);
+  --shadow-hover: 0 20px 60px rgba(0, 0, 0, 0.50);
+  --accent: #8b5cf6;
+  --accent-light: #2a1a4a;
+  --accent-dark: #7c3aed;
+  --highlight: #fb923c;
+  --highlight-light: #2a1a0a;
+  --highlight-dark: #f97316;
+  --gradient: linear-gradient(135deg, #8b5cf6 0%, #fb923c 100%);
+  --glass: rgba(24, 24, 43, 0.80);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --scrollbar-track: #1a1a2e;
+  --scrollbar-thumb: #3a3a5a;
+}
+
+/* ─── Global background with math image ─── */
+html,
+body {
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-family: var(--font);
+  background: var(--bg);                  /* fallback color */
+  color: var(--text);
+  transition: background var(--transition), color var(--transition);
+}
+
+body {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;          /* keeps image fixed on scroll */
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 8px;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── Utility Classes ─── */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all var(--transition);
+  background: var(--bg-input);
+  color: var(--text);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+}
+.btn:hover {
+  background: var(--bg-hover);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow);
+}
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--accent-dark);
+}
+.btn-highlight {
+  background: var(--highlight);
+  color: #fff;
+}
+.btn-highlight:hover {
+  background: var(--highlight-dark);
+}
+.btn-ghost {
+  background: transparent;
+  color: var(--text-secondary);
+}
+.btn-ghost:hover {
+  background: var(--bg-hover);
+  color: var(--text);
+}
+
+.card {
+  background: var(--bg-card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: all var(--transition);
+  border: 1px solid var(--border);
+}
+.card:hover {
+  box-shadow: var(--shadow-hover);
+}
+
+/* ─── Component-specific ─── */
+.header {
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-card);
+  backdrop-filter: blur(8px);
+}
+.header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.6rem;
+  font-weight: 700;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.logo-icon {
+  background: var(--gradient);
+  padding: 6px;
+  border-radius: 10px;
+  color: #fff;
+  display: flex;
+}
+
+.hero {
+  padding: 40px 0 20px;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero p {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+  margin-top: 8px;
+}
+
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 16px;
+  margin: 30px 0;
+}
+.category-card {
+  padding: 16px 10px;
+  text-align: center;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 2px solid transparent;
+  transition: all var(--transition);
+  box-shadow: var(--shadow);
+}
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+.category-card.active {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+/* ─── Category Card Icons ─── */
+.category-card .icon {
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 32px;          /* fixed small height */
+  width: 32px;           /* fixed small width */
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.category-card .icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.category-card .label {
+  font-weight: 500;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.converter-card {
+  padding: 30px;
+  margin: 20px 0 30px;
+}
+.converter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-end;
+}
+.converter-row .field {
+  flex: 1 1 180px;
+}
+.converter-row .field label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.converter-row .field input,
+.converter-row .field select {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background: var(--bg-input);
+  color: var(--text);
+  font-size: 1rem;
+  transition: border var(--transition);
+  outline: none;
+}
+.converter-row .field input:focus,
+.converter-row .field select:focus {
+  border-color: var(--accent);
+}
+.converter-row .swap-btn {
+  align-self: center;
+  padding: 8px 12px;
+  background: var(--bg-input);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all var(--transition);
+  border: 1px solid var(--border);
+}
+.converter-row .swap-btn:hover {
+  transform: rotate(180deg);
+  background: var(--accent-light);
+  border-color: var(--accent);
+}
+.result-box {
+  margin-top: 24px;
+  padding: 20px;
+  background: var(--bg-input);
+  border-radius: var(--radius-sm);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.result-box .value {
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+.result-box .unit {
+  font-size: 1.2rem;
+  color: var(--text-secondary);
+}
+.result-box .actions {
+  display: flex;
+  gap: 10px;
+}
+
+.history-section {
+  margin: 30px 0;
+}
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
+.history-item .detail {
+  color: var(--text-secondary);
+}
+
+.favorites-section {
+  margin: 20px 0;
+}
+.favorite-chip {
+  display: inline-block;
+  background: var(--accent-light);
+  color: var(--accent);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  margin: 4px 6px 4px 0;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.favorite-chip:hover {
+  background: var(--accent);
+  color: #fff;
+}
+
+@media (max-width: 768px) {
+  .converter-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .converter-row .field {
+    flex: 1 1 auto;
+  }
+  .hero h1 {
+    font-size: 2rem;
+  }
+  .category-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+}/* ─── Dark Mode: Card Hover Shine ─── */
+[data-theme="dark"] .card:hover,
+[data-theme="dark"] .category-card:hover,
+[data-theme="dark"] .converter-card:hover {
+  box-shadow: 
+    0 0 30px rgba(212, 175, 55, 0.25),   /* golden glow */
+    0 8px 40px rgba(0, 0, 0, 0.5);        /* deep shadow */
+  border-color: var(--accent);            /* gold border */
+  transform: translateY(-2px);            /* subtle lift (optional) */
+  transition: all var(--transition);
+}
+
+/* Optional: add a subtle inner shine for category cards */
+[data-theme="dark"] .category-card:hover {
+  background: linear-gradient(
+    145deg, 
+    var(--bg-card) 0%, 
+    var(--accent-light) 100%
+  );
+}/* ─── Remove number input spinners (up/down arrows) ─── */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* Firefox */
+}
